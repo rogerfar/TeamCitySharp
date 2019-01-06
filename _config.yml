@@ -1,7 +1,6 @@
 title: Teamcitysharp
 description: API for TeamCity
 google_analytics: 
-show_downloads: true
 theme: jekyll-theme-slate
 
 gems:
