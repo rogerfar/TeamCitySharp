@@ -326,6 +326,27 @@ namespace TeamCitySharp.Connection
       return GetRaw(urlPart, true);
     }
 
+    public string GetRawXml(string urlPart)
+    {
+        if (CheckForAuthRequest())
+            throw new ArgumentException("If you are not acting as a guest you must supply userName and password");
+
+        if (string.IsNullOrEmpty(urlPart))
+            throw new ArgumentException("Url must be specified");
+
+        var url = CreateUrl(urlPart);
+
+        var httpClient = CreateHttpClient(m_credentials.UserName, m_credentials.Password, HttpContentTypes.ApplicationXml);
+        var response = httpClient.Get(url);
+        if (IsHttpError(response))
+        {
+            throw new HttpException(response.StatusCode,
+                                    $"Error {response.ReasonPhrase}: Thrown with URL {url}");
+        }
+
+        return response.RawText();
+    }
+
     public string GetRaw(string urlPart, bool rest)
     {
       if (CheckForAuthRequest())

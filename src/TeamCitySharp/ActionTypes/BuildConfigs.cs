@@ -210,10 +210,20 @@ namespace TeamCitySharp.ActionTypes
                                              "/buildTypes/{0}/artifact-dependencies", locator);
     }
 
+    public string GetRawBuildStep(BuildTypeLocator locator, string runner)
+    {
+        return m_caller.GetRawXml(ActionHelper.CreateFieldUrl($"/buildTypes/{locator}/steps/{runner}", m_fields));
+    }
+
     public void PostRawBuildStep(BuildTypeLocator locator, string rawXml)
     {
       m_caller.PostFormat<BuildConfig>(rawXml, HttpContentTypes.ApplicationXml, HttpContentTypes.ApplicationJson,
                                       "/buildTypes/{0}/steps", locator);
+    }
+
+    public void PutRawBuildStep(BuildTypeLocator locator, string stepId, string value)
+    {
+        m_caller.PutFormat(value, HttpContentTypes.ApplicationXml, "/buildTypes/{0}/steps/{1}", locator, stepId);
     }
 
     public void PostRawBuildTrigger(BuildTypeLocator locator, string rawXml)

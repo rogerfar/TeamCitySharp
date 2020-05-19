@@ -47,6 +47,8 @@ namespace TeamCitySharp.Connection
 
     string GetRaw(string urlPart);
 
+    string GetRawXml(string urlPart);
+
     string GetRaw(string urlPart, bool rest);
 
     bool GetBoolean(string urlPart, params object[] parts);
@@ -57,6 +59,5 @@ namespace TeamCitySharp.Connection
     void EnableCache();
 
     void UseVersion(string version);
-
   }
 }

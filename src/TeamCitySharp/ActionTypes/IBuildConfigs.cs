@@ -31,8 +31,10 @@ namespace TeamCitySharp.ActionTypes
     bool GetConfigurationPauseStatus(BuildTypeLocator locator);
     void SetConfigurationPauseStatus(BuildTypeLocator locator, bool isPaused);
 
-
+    string GetRawBuildStep(BuildTypeLocator locator, string runner);
     void PostRawBuildStep(BuildTypeLocator locator, string rawXml);
+    void PutRawBuildStep(BuildTypeLocator locator, string stepId, string value);
+
     void PostRawBuildTrigger(BuildTypeLocator locator, string rawXml);
     void SetTrigger(BuildTypeLocator locator, BuildTrigger trigger);
 
